@@ -1,12 +1,21 @@
 import java.util.ArrayList;
-
+// import java.util.HashMap;
+// import java.util.Map;
 public class Library_Sim {
     private String name;
     private String address;
+    //private Map<String, ArrayList<Shelf>> shelvesMap;
+    private ArrayList<Shelf> shelves;
+
 
     public Library_Sim(String name, String address){
         this.name = name;
         this.address = address;
+        this.shelves = new ArrayList<Shelf>();
+    }
+
+    public ArrayList<Shelf> getShelves(){
+        return this.shelves;
     }
 
     public String getName(){
@@ -15,6 +24,16 @@ public class Library_Sim {
 
     public String getAddress(){
         return this.address;
+    }
+
+    public void addShelf(Shelf shelf){
+        this.shelves.add(shelf);
+    }
+
+    public void shelfInfo(){
+        for (Shelf shelf : shelves){
+            System.out.println("Shelf name: " + shelf.getName() + "\nGenre: " + shelf.getGenre() + "\n"+shelf.getMaxRows() +"x" + shelf.getMaxColumns());
+        }
     }
 
 
@@ -89,6 +108,18 @@ class Shelf {
         return null;
     }
 
+    public void shelfBookInfo(){
+        for(int i = 0; i < max_rows; i++){
+            for(int j = 0; j < this.books.get(i).size(); j++){
+                System.out.println(this.books.get(i).get(j).toString());
+            }
+        }
+    }
+
+    @Override
+    public String toString(){
+        return "Shelf name: " + this.name + "\nGenre: " + this.genre;
+    }
 
     public String getName(){
         return this.name;
@@ -97,6 +128,14 @@ class Shelf {
 
     public String getGenre(){
         return this.genre;
+    }
+
+    public int getMaxRows(){
+        return this.max_rows;
+    }
+
+    public int getMaxColumns(){
+        return this.max_columns;
     }
 
 }
@@ -114,6 +153,11 @@ class Book {
         this.publicationYear = publicationYear;
         this.genre = genre;
         this.isAvailable = true;
+    }
+
+    @Override
+    public String toString(){
+        return "Title: " + this.title + "\nAuthor: " + this.author + "\nPublication Year: " + this.publicationYear + "\nGenre: " + this.genre + "\nAvailable: " + this.isAvailable+"\n___________________________________________________________________________________";
     }
 
     public void checkOut(){
