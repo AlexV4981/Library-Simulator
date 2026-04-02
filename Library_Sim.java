@@ -194,4 +194,80 @@ class Book {
 
 }
 
+class User {
+    private String name;
+    private int ID;
+    private arrayList<Book> books;
 
+    public User(String name) {
+        this.name = name;
+    }
+
+    public void checkOut(Book book) {
+        book.checkOut();
+        books.add(book);
+    }
+
+    public void checkIn(Book book) {
+        book.checkIn();
+        books.remove(book);
+    }
+}
+
+class Patron extends User {
+    private int maxCheckOutCount;
+    private double fines;
+    
+    pubilc Patron(int maxCheckOutCount, double fines) {
+        super();
+        this.maxCheckOutCount = maxCheckOutCount;
+        this.fines = fines;
+    }
+
+    // there has to be a function to call to make the patron gain fines
+    // even though it's public, that doesn't necessarily mean the patron has
+    // accesss to this function
+    public void fine(double amount) {
+        fines += amount;
+    }
+    
+    public void pay(double amount) {
+        if (fines - amount < 0) {
+            System.out.println("You have overpaid");
+            System.out.println("You only have to pay " + fines);
+            System.out.println("You have been refunded. Try again.");
+        }
+        else if (fines - amount > 0) {
+            fines -= amount;
+            System.out.println("You have $" + fines + " remaining to pay");
+        }
+        else {
+            System.out.println("You have fully paid your fines.");
+            System.out.println("Thank You!");
+        }
+        
+    }
+}
+
+class Librarian extends User {
+    public Librarian() {
+        super();
+    }
+
+    public void addShelf(Library_Sim library, Shelf shelf) {
+        library.addShelf(shelf);
+    }
+
+    public void addBook(Library_Sim library, Book book) {
+        library.addBook(book);
+    }
+
+    // i didn't realize this while making the class diagram, but someone has to be able to 
+    // give the Patrons fines
+    public void fine(Patron patron, double fines) {
+        patron.fine(fines);
+    }
+    
+}
+
+        
