@@ -25,6 +25,11 @@ public class Main {
         headLibrarian.addBook(library, book3);
         headLibrarian.addBook(library, book4);
 
+        fantasyShelf.addBook(book1);
+        scienceShelf.addBook(book2);
+        miscellaneousShelf.addBook(book3);
+        miscellaneousShelf.addBook(book4);
+
         //Print Info
         System.out.println("--- Library Shelves ---");
         library.shelfInfo();
@@ -32,6 +37,8 @@ public class Main {
         System.out.println("\n--- Fantasy Shelf Contents ---");
         fantasyShelf.shelfBookInfo();
 
+        Patron firstPatron = new Patron("John", 5, 0.0);
+        library.addPatron(firstPatron);
         // starts login screen
         // switch this to start this on the patron screen.
         javax.swing.SwingUtilities.invokeLater(() -> {

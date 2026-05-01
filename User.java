@@ -16,7 +16,7 @@ public class User {
         return books;
     }
 
-    public void checkOut(Book book, String title) {
+    public void checkOut(Book book) {
         if (book != null) {
             book.checkOut();
             books.add(book);

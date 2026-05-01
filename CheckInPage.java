@@ -1,31 +1,31 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class CheckoutPage extends JFrame {
+public class CheckInPage extends JFrame {
 
     private Library_Sim library;
     private User currentUser;
 
-    public CheckoutPage(Library_Sim library, User currentUser) {
+    public CheckInPage(Library_Sim library, User currentUser) {
         this.library = library;
         this.currentUser = currentUser;
 
-        setTitle("Checkout Cart");
+        setTitle("Return Books");
         setSize(500, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        JLabel titleLabel = new JLabel("CHECKOUT CART", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
+        JLabel titleLabel = new JLabel("BOOKS YOU HAVE CHECKED OUT", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Cart list panel
         JPanel listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
 
-        for (Book b : currentUser.getCart()) {
+        // Loop through all checked-out books
+        for (Book b : currentUser.getBooks()) {
 
             JPanel row = new JPanel(new FlowLayout(FlowLayout.LEFT));
             row.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -34,35 +34,24 @@ public class CheckoutPage extends JFrame {
                     + b.getAuthor() + "<br>"
                     + "Genre: " + b.getGenre() + "</html>");
 
-            JButton removeButton = new JButton("Remove");
-            removeButton.addActionListener(e -> {
-                currentUser.getCart().remove(b);
-                JOptionPane.showMessageDialog(this, b.getTitle() + " removed from cart.");
+            JButton returnButton = new JButton("Return");
+            returnButton.addActionListener(e -> {
+                currentUser.checkIn(b, b.getTitle());
+                JOptionPane.showMessageDialog(this, b.getTitle() + " returned to library.");
+
                 dispose();
-                new CheckoutPage(library, currentUser); // refresh page
+                new CheckInPage(library, currentUser); // refresh the page
             });
 
             row.add(info);
-            row.add(removeButton);
+            row.add(returnButton);
             listPanel.add(row);
         }
 
         JScrollPane scrollPane = new JScrollPane(listPanel);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Bottom buttons
         JPanel bottomPanel = new JPanel(new FlowLayout());
-
-        JButton confirmButton = new JButton("Confirm Checkout");
-        confirmButton.addActionListener(e -> {
-            for (Book b : currentUser.getCart()) {
-                currentUser.checkOut(b);
-            }
-            currentUser.clearCart();
-            JOptionPane.showMessageDialog(this, "Checkout complete!");
-            dispose();
-            new LibrarianDashboard(library, (Librarian) currentUser);
-        });
 
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> {
@@ -70,9 +59,7 @@ public class CheckoutPage extends JFrame {
             dispose();
         });
 
-        bottomPanel.add(confirmButton);
         bottomPanel.add(backButton);
-
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         add(mainPanel);

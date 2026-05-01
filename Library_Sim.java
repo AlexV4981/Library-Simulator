@@ -10,8 +10,6 @@ public class Library_Sim {
     private ArrayList<Librarian> librarians;
     private ArrayList<Patron> patrons;
 
-
-
     public Library_Sim(String name, String address){
         this.name = name;
         this.address = address;
@@ -50,8 +48,16 @@ public class Library_Sim {
         librarians.add(librarian);
     }
 
+    public void addPatron(Patron patron) {
+        patrons.add(patron);
+    }
+
     public ArrayList<Librarian> getLibrarians() {
         return librarians;
+    }
+
+    public ArrayList<Patron> getPatrons() {
+        return patrons;
     }
 
     public void shelfInfo(){

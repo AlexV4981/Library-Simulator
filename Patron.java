@@ -26,4 +26,12 @@ public class Patron extends User {
             System.out.println("Thank You!");
         }
     }
+
+    public String getName(){ return this.name; }
+
+    @Override
+    public String toString() {
+        return "Patron " + name;
+    }
+
 }

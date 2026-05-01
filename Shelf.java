@@ -91,4 +91,22 @@ public class Shelf {
     public int getMaxColumns() {
         return this.max_columns;
     }
+
+    public ArrayList<Book> getBooks() {
+        ArrayList<Book> flat = new ArrayList<>();
+        for (int row = 0; row < books.size(); row++) {
+            ArrayList<Book> rowList = books.get(row);
+            for (int col = 0; col < rowList.size(); col++) {
+                Book b = rowList.get(col);
+                if (b != null) {
+                    flat.add(b);
+                }
+            }
+        }
+
+        return flat;
+    }
+
+
 }
+
