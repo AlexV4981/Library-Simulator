@@ -1,9 +1,9 @@
 public class Book {
-    private String title; // [cite: 16]
-    private String author; // [cite: 18]
-    private int publicationYear; // [cite: 25]
-    private String genre; // [cite: 26]
-    private boolean isAvailable; // [cite: 27]
+    private String title;
+    private String author;
+    private int publicationYear;
+    private String genre;
+    private boolean isAvailable;
 
     public Book(String title, String author, int publicationYear, String genre) { // [cite: 28, 30]
         this.title = title;
@@ -14,39 +14,39 @@ public class Book {
     }
 
     @Override
-    public String toString() { // [cite: 43]
+    public String toString() {
         return "Title: " + this.title + "\nAuthor: " + this.author + 
                "\nPublication Year: " + this.publicationYear + 
                "\nGenre: " + this.genre + "\nAvailable: " + this.isAvailable + 
                "\n___________________________________________________________________________________";
     }
 
-    public void checkOut() { // [cite: 34]
+    public void checkOut() {
         this.isAvailable = false;
     }
 
-    public void checkIn() { // [cite: 36]
+    public void checkIn() {
         this.isAvailable = true;
     }
 
     // Getters
-    public boolean getIsAvailable() { // [cite: 38]
+    public boolean getIsAvailable() {
         return this.isAvailable;
     }
 
-    public String getTitle() { // [cite: 40]
+    public String getTitle() {
         return this.title;
     }   
 
-    public String getAuthor() { // [cite: 42]
+    public String getAuthor() {
         return this.author;
     }
 
-    public int getPublicationYear() { // [cite: 44]
+    public int getPublicationYear() {
         return this.publicationYear;
     }
 
-    public String getGenre() { // [cite: 47]
+    public String getGenre() {
         return this.genre;
     }
 }
