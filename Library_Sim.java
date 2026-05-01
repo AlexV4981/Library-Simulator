@@ -1,33 +1,33 @@
 import java.util.ArrayList;
 
 public class Library_Sim {
-    private String name; // [cite: 2]
-    private String address; // [cite: 3]
-    private ArrayList<Shelf> shelves; // [cite: 5]
+    private String name;
+    private String address;
+    private ArrayList<Shelf> shelves;
 
-    public Library_Sim(String name, String address) { // [cite: 6]
+    public Library_Sim(String name, String address) {
         this.name = name;
         this.address = address;
         this.shelves = new ArrayList<Shelf>();
     }
 
-    public ArrayList<Shelf> getShelves() { // [cite: 7]
+    public ArrayList<Shelf> getShelves() {
         return this.shelves;
     }
 
-    public String getName() { // [cite: 9]
+    public String getName() {
         return this.name;
     }
 
-    public String getAddress() { // [cite: 10]
+    public String getAddress() {
         return this.address;
     }
 
-    public void addShelf(Shelf shelf) { // 
+    public void addShelf(Shelf shelf) {
         this.shelves.add(shelf);
     }
 
-    // Added to allow Librarian to add books to the library
+    //Added to allow Librarian to add books to the library
     public void addBook(Book book) {
         for (Shelf shelf : shelves) {
             if (shelf.getGenre().equalsIgnoreCase(book.getGenre()) && !shelf.isFull()) {
@@ -38,7 +38,7 @@ public class Library_Sim {
         System.out.println("No available or matching shelf found for genre: " + book.getGenre());
     }
 
-    public void shelfInfo() { // [cite: 12]
+    public void shelfInfo() {
         for (Shelf shelf : shelves) {
             System.out.println("Shelf name: " + shelf.getName() + 
                                "\nGenre: " + shelf.getGenre() + 
