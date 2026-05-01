@@ -1,9 +1,9 @@
-public class Patron extends User { // [cite: 65, 68]
-    private int maxCheckOutCount; // [cite: 58]
-    private double fines; // [cite: 60]
+public class Patron extends User {
+    private int maxCheckOutCount;
+    private double fines;
     
     public Patron(String name, int maxCheckOutCount, double fines) {
-        super(name); // Required since User constructor takes a String
+        super(name);
         this.maxCheckOutCount = maxCheckOutCount;
         this.fines = fines;
     }
@@ -12,7 +12,7 @@ public class Patron extends User { // [cite: 65, 68]
         fines += amount;
     }
     
-    public void pay(double amount) { // [cite: 62]
+    public void pay(double amount) {
         if (fines - amount < 0) {
             System.out.println("You have overpaid.");
             System.out.println("You only have to pay $" + fines);
