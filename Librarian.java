@@ -1,14 +1,14 @@
-public class Librarian extends User { // [cite: 66, 68]
+public class Librarian extends User {
     
     public Librarian(String name) {
         super(name);
     }
 
-    public void addShelf(Library_Sim library, Shelf shelf) { // [cite: 61]
+    public void addShelf(Library_Sim library, Shelf shelf) {
         library.addShelf(shelf);
     }
 
-    public void addBook(Library_Sim library, Book book) { // 
+    public void addBook(Library_Sim library, Book book) {
         library.addBook(book);
     }
 
