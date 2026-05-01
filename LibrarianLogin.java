@@ -10,7 +10,6 @@ public class LibrarianLogin extends JFrame {
     private JButton createLibrarianButton;
 
     private Library_Sim library;
-    private Librarian librarian; // store created librarian
 
     public LibrarianLogin(Library_Sim library) {
         this.library = library;
@@ -81,20 +80,17 @@ public class LibrarianLogin extends JFrame {
 
         // LOGIN ACTION
         loginButton.addActionListener(e -> {
-            if (librarian == null) {
-                JOptionPane.showMessageDialog(this, "No librarian exists yet. Create one first.");
-                return;
-            }
-
             String user = usernameField.getText();
             String pass = new String(passwordField.getPassword());
 
-            if (librarian.authenticate(user, pass)) {
-                new LibrarianDashboard(library);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid login");
+            for (Librarian lib : library.getLibrarians()) {
+                if (lib.authenticate(user, pass)) {
+                    new LibrarianDashboard(library);
+                    dispose();
+                    return;
+                }
             }
+            JOptionPane.showMessageDialog(this, "Invalid login");
         });
 
         // CREATE LIBRARIAN ACTION
@@ -123,7 +119,8 @@ public class LibrarianLogin extends JFrame {
                     return;
                 }
 
-                librarian = new Librarian(u, p);
+                Librarian newLibn = new Librarian(u, p);
+                library.addLibrarian(newLibn);
                 JOptionPane.showMessageDialog(this, "Librarian created! You can now log in.");
             }
         });

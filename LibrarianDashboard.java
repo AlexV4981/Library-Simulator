@@ -7,6 +7,7 @@ public class LibrarianDashboard extends JFrame {
     private JButton checkOutButton;
     private JButton checkInButton;
     private JButton finePageButton;
+    private JButton logoutButton;
     private Library_Sim library;
 
     public LibrarianDashboard(Library_Sim library) {
@@ -50,6 +51,17 @@ public class LibrarianDashboard extends JFrame {
         gbc.gridy = 4;
         finePageButton = new JButton("Fine Management");
         panel.add(finePageButton, gbc);
+
+        // Logout Page
+        gbc.gridy = 5;
+        gbc.gridx = 0;
+        logoutButton = new JButton("Logout");
+        panel.add(logoutButton, gbc);
+
+        logoutButton.addActionListener(e -> {
+            dispose(); // close dashboard
+            new LibrarianLogin(library); // reopen login screen
+        });
 
         add(panel);
         setVisible(true);

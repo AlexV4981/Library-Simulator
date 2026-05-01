@@ -1,7 +1,15 @@
 public class Librarian extends User {
-    
-    public Librarian(String name) {
-        super(name);
+    private String username;
+    private String password;
+
+    public Librarian(String username, String password) {
+        super(username); // store name in User
+        this.username = username;
+        this.password = password;
+    }
+
+    public boolean authenticate(String user, String pass) {
+        return this.username.equals(user) && this.password.equals(pass);
     }
 
     public void addShelf(Library_Sim library, Shelf shelf) {
