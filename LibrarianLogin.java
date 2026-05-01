@@ -85,7 +85,7 @@ public class LibrarianLogin extends JFrame {
 
             for (Librarian lib : library.getLibrarians()) {
                 if (lib.authenticate(user, pass)) {
-                    new LibrarianDashboard(library);
+                    new LibrarianDashboard(library, lib);
                     dispose();
                     return;
                 }

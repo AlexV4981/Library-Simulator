@@ -26,6 +26,10 @@ public class Library_Sim {
         return this.shelves;
     }
 
+    public ArrayList<Book> getCatalog() {
+        return this.catalog;
+    }
+
     public String getName(){
         return this.name;
     }
