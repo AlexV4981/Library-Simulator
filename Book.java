@@ -5,7 +5,7 @@ public class Book {
     private String genre;
     private boolean isAvailable;
 
-    public Book(String title, String author, int publicationYear, String genre) { // [cite: 28, 30]
+    public Book(String title, String author, int publicationYear, String genre) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
