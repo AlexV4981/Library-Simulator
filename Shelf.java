@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Shelf {
-    private String name; // [cite: 15]
-    private String genre; // [cite: 17]
-    private ArrayList<ArrayList<Book>> books; // [cite: 19]
-    private int max_rows; // [cite: 20]
-    private int max_columns; // [cite: 21]
+    private String name;
+    private String genre;
+    private ArrayList<ArrayList<Book>> books;
+    private int max_rows;
+    private int max_columns;
 
-    public Shelf(String name, String genre, int max_rows, int max_columns) { // [cite: 22, 29]
+    public Shelf(String name, String genre, int max_rows, int max_columns) {
         this.name = name;
         this.genre = genre;
         this.max_rows = max_rows;
@@ -19,7 +19,7 @@ public class Shelf {
         }
     }
 
-    public boolean isFull() { // [cite: 31]
+    public boolean isFull() {
         int totalBooks = 0;
         for(int i = 0; i < max_rows; i++) {
             if(this.books.get(i).size() < max_columns) {
@@ -29,7 +29,7 @@ public class Shelf {
         return totalBooks == max_rows * max_columns;
     }
 
-    public void addBook(Book book) { // [cite: 33]
+    public void addBook(Book book) {
         for(int i = 0; i < max_rows; i++) {
             if (this.books.get(i).size() < max_columns) {
                 this.books.get(i).add(book);
@@ -38,14 +38,14 @@ public class Shelf {
         }
     }
 
-    public void checkOutBook(String title) { // [cite: 35]
+    public void checkOutBook(String title) {
         Book book = findBook(title);
         if(book != null && book.getIsAvailable()) {
             book.checkOut();
         }
     }
 
-    public void checkInBook(String title) { // [cite: 37]
+    public void checkInBook(String title) {
         Book book = findBook(title);
         if(book != null && !book.getIsAvailable()) {
             book.checkIn();
@@ -63,7 +63,7 @@ public class Shelf {
         return null;
     }
 
-    public void shelfBookInfo() { // [cite: 41]
+    public void shelfBookInfo() {
         for(int i = 0; i < max_rows; i++) {
             for(int j = 0; j < this.books.get(i).size(); j++) {
                 System.out.println(this.books.get(i).get(j).toString());
@@ -72,23 +72,23 @@ public class Shelf {
     }
 
     @Override
-    public String toString() { // [cite: 32]
+    public String toString() {
         return "Shelf name: " + this.name + "\nGenre: " + this.genre;
     }
 
-    public String getName() { // [cite: 45]
+    public String getName() {
         return this.name;
     }
 
-    public String getGenre() { // [cite: 46]
+    public String getGenre() {
         return this.genre;
     }
 
-    public int getMaxRows() { // [cite: 48]
+    public int getMaxRows() {
         return this.max_rows;
     }
 
-    public int getMaxColumns() { // [cite: 49]
+    public int getMaxColumns() {
         return this.max_columns;
     }
 }
