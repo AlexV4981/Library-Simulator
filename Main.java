@@ -11,25 +11,17 @@ public class Main {
         debugger.fillShelf(scienceShelf);
         debugger.fillShelf(miscellaneousShelf);
 
-
-
         library.addShelf(fantasyShelf);
         library.addShelf(scienceShelf);
         library.addShelf(miscellaneousShelf);
 
         debugger.shelfBookInfo(library);
-        
 
 
-
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new LibrarianLogin(library);
+        });
 
 
     }
-
-
-
-
-
-
-
 }

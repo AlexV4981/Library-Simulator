@@ -6,6 +6,7 @@ public class Library_Sim {
     private String address;
     //private Map<String, ArrayList<Shelf>> shelvesMap;
     private ArrayList<Shelf> shelves;
+    private ArrayList<Book> catalog;
 
 
     public Library_Sim(String name, String address){
@@ -28,6 +29,10 @@ public class Library_Sim {
 
     public void addShelf(Shelf shelf){
         this.shelves.add(shelf);
+    }
+
+    public void addBook(Book book) {
+        this.catalog.add(book);
     }
 
     public void shelfInfo(){
@@ -197,7 +202,7 @@ class Book {
 class User {
     private String name;
     private int ID;
-    private arrayList<Book> books;
+    private ArrayList<Book> books;
 
     public User(String name) {
         this.name = name;
@@ -218,8 +223,8 @@ class Patron extends User {
     private int maxCheckOutCount;
     private double fines;
     
-    pubilc Patron(int maxCheckOutCount, double fines) {
-        super();
+    public Patron(String name, int maxCheckOutCount, double fines) {
+        super(name);
         this.maxCheckOutCount = maxCheckOutCount;
         this.fines = fines;
     }
@@ -250,8 +255,17 @@ class Patron extends User {
 }
 
 class Librarian extends User {
-    public Librarian() {
-        super();
+    private String username;
+    private String password;
+
+    public Librarian(String username, String password) {
+        super(username); // store name in User
+        this.username = username;
+        this.password = password;
+    }
+
+    public boolean authenticate(String user, String pass) {
+        return this.username.equals(user) && this.password.equals(pass);
     }
 
     public void addShelf(Library_Sim library, Shelf shelf) {
@@ -267,7 +281,6 @@ class Librarian extends User {
     public void fine(Patron patron, double fines) {
         patron.fine(fines);
     }
-    
 }
 
         
