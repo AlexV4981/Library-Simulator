@@ -1,11 +1,18 @@
 public class Patron extends User {
     private int maxCheckOutCount;
     private double fines;
+    private String password;
     
     public Patron(String name, int maxCheckOutCount, double fines) {
         super(name);
         this.maxCheckOutCount = maxCheckOutCount;
         this.fines = fines;
+    }
+    public Patron(String name,String password, int maxCheckOutCount, double fines) {
+        super(name);
+        this.maxCheckOutCount = maxCheckOutCount;
+        this.fines = fines;
+        this.password = password;
     }
 
     public void fine(double amount) {
@@ -28,6 +35,13 @@ public class Patron extends User {
     }
 
     public String getName(){ return this.name; }
+    public void setName(String name){ this.name = name; }
+    public int getMaxCheckOutCount(){ return this.maxCheckOutCount; }
+    public void setMaxCheckOutCount(int count){ this.maxCheckOutCount = count; }
+    public double getFines(){ return this.fines; }
+    public void setFines(double fines){ this.fines = fines; }
+    public String getPassword(){ return this.password; }
+    public void setPassword(String password){ this.password = password; }
 
     @Override
     public String toString() {

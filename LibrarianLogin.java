@@ -124,5 +124,12 @@ public class LibrarianLogin extends JFrame {
                 JOptionPane.showMessageDialog(this, "Librarian created! You can now log in.");
             }
         });
+
+        switchToPatronButton.addActionListener(e -> {
+            PatronLogin patron = new PatronLogin(library);
+            patron.setVisible(true);
+            dispose();
+
+        });
     }
 }
