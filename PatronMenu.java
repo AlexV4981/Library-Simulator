@@ -1,10 +1,15 @@
+//Imports necessary Swing components and event handling classes for the patron menu.
+//IMPORTS
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Defines the main interaction screen for library patrons to search, borrow, and return books.
+//CLASS DEFINITION
 public class PatronMenu extends JFrame {
 
-
+    //UI components for list display, search input, and borrowing actions.
+    //UI COMPONENTS
     private JList list1;
     private JButton checkInButton;
     private JButton checkOutButton;
@@ -14,10 +19,14 @@ public class PatronMenu extends JFrame {
     private JPanel contentPane;
     private JButton backButton;
 
+    //Contextual data for the logged-in patron and the current library state.
+    //INSTANCE VARIABLES
     private Patron patron;
     private Library_Sim library;
     private DefaultListModel<String> listModel = new DefaultListModel<>();
 
+    //Initializes the frame and configures action listeners for book management.
+    //CONSTRUCTOR
     public PatronMenu(Patron patron, Library_Sim library){
 
         this.patron = patron;
@@ -31,36 +40,31 @@ public class PatronMenu extends JFrame {
         list1.setModel(listModel);
         populateJlist();
 
+        //Filters the displayed book titles based on user input for a case-insensitive match.
+        //SEARCH ACTION
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //user input and convert to lowercase for case-insensitive matching
                 String query = titleTextField.getText().toLowerCase().trim();
-
-                //Clear the current list view
                 listModel.clear();
 
-                //Search through the library data
                 for (Shelf shelf : library.getShelves()) {
                     for (Book book : shelf.getBooks()) {
-                        // Check if the title (lowered) contains the query
                         String title = book.getTitle().toLowerCase();
-
                         if (title.contains(query)) {
-                            //Update the list with the closest matches
                             listModel.addElement(book.getTitle());
                         }
                     }
                 }
 
-                //box is empty, just repopulate the whole list
                 if (query.isEmpty()) {
                     populateJlist();
                 }
             }
         });
 
-
+        //Handles returning a book currently in the patron's possession to the library.
+        //CHECK IN ACTION
         checkInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,9 +75,8 @@ public class PatronMenu extends JFrame {
                     return;
                 }
 
-                //Find the book in the PATRON'S list (since they are checking it in)
                 Book bookToReturn = null;
-                for (Book b : patron.getBooks()) { //Accesses the User's books list
+                for (Book b : patron.getBooks()) {
                     if (b.getTitle().equals(selectedTitle)) {
                         bookToReturn = b;
                         break;
@@ -81,13 +84,9 @@ public class PatronMenu extends JFrame {
                 }
 
                 if (bookToReturn != null) {
-                    //Update the Book and the Patron
-                    bookToReturn.checkIn(); //Sets isAvailable = true
-                    patron.checkIn(bookToReturn, selectedTitle); //Removes from patron's list
-
+                    bookToReturn.checkIn();
+                    patron.checkIn(bookToReturn, selectedTitle);
                     JOptionPane.showMessageDialog(contentPane, "Checked in: " + selectedTitle);
-
-                    //Refresh the UI
                     populateJlist();
                 } else {
                     JOptionPane.showMessageDialog(contentPane, "You don't appear to have this book checked out.");
@@ -95,68 +94,66 @@ public class PatronMenu extends JFrame {
             }
         });
 
-
+        //Attempts to check out a selected book if it's available and the patron hasn't hit their limit.
+        //CHECK OUT ACTION
         checkOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedTitle = (String) list1.getSelectedValue();
                 selectionValid(selectedTitle);
 
-                //find the book in the library shelves
                 for (Shelf shelf : library.getShelves()) {
                     Book book = shelf.findBook(selectedTitle);
 
                     if (book != null) {
                         if (book.getIsAvailable()) {
-
                             if(patron.getBooks().size() < patron.getMaxCheckOutCount()){
-
                                 JOptionPane.showMessageDialog(contentPane, "Successfully checked out: " + selectedTitle);
                                 patron.checkOut(book);
-
-
                             } else {
                                 JOptionPane.showMessageDialog(contentPane, "Check in some books first");
                             }
-
-                            //refresh the List to show it's gone (or updated)
                             populateJlist();
                         } else {
                             JOptionPane.showMessageDialog(contentPane, "This book is already checked out.");
                         }
-                        return; //exit after finding the book
+                        return;
                     }
                 }
             }
         });
 
-
-
-
+        //Navigates to the payment screen to settle outstanding account fines.
+        //FINANCIAL ACTION
         payFinesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PatronPayment payment = new PatronPayment(patron,library);
                 payment.setVisible(true);
                 dispose();
-
             }
         });
+
+        //Returns the user to the initial login screen.
+        //NAVIGATION ACTION
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PatronLogin patron = new PatronLogin(library);
-                patron.setVisible(true);
+                PatronLogin patronLogin = new PatronLogin(library);
+                patronLogin.setVisible(true);
                 dispose();
             }
         });
     }
 
-
+    //Helper method to retrieve the current patron's name for UI labeling.
+    //USER IDENTITY
     public String whoami(){
         return patron.getName();
     }
 
+    //Iterates through all shelves to display every book title available in the system.
+    //LIST REFRESH
     void populateJlist(){
         listModel.clear();
         for(Shelf shelf : library.getShelves()){
@@ -164,15 +161,13 @@ public class PatronMenu extends JFrame {
                 listModel.addElement(book.getTitle());
             }
         }
-
     }
 
+    //Utility to ensure a selection was made before attempting an operation.
+    //VALIDATION HELPER
     void selectionValid(String Selected){
         if (Selected == null){
             JOptionPane.showMessageDialog(contentPane, "Please Select a book first");
         }
     }
-
-
-
 }

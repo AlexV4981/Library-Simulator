@@ -42,6 +42,8 @@ public class Main {
         javax.swing.SwingUtilities.invokeLater(() -> {
             // Changed from LibrarianLogin to PatronLogin
             PatronLogin patron = new PatronLogin(library);
+            library.addPatron(patron.getPatron());
+            patron.updateLibrary(library);
             patron.setVisible(true);
         });
     }
