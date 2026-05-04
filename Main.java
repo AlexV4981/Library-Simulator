@@ -30,8 +30,15 @@ public class Main {
         miscellaneousShelf.addBook(book3);
         miscellaneousShelf.addBook(book4);
 
+        //Print Info
+        System.out.println("--- Library Shelves ---");
+        library.shelfInfo();
+
+        System.out.println("\n--- Fantasy Shelf Contents ---");
+        fantasyShelf.shelfBookInfo();
+
         // 4. Setup initial Patron
-        Patron firstPatron = new Patron("John", 5, 0.0);
+        Patron firstPatron = new Patron("John", "Doe", 5, 0.0);
         library.addPatron(firstPatron);
 
         // 5. Console Debug Info (Optional)
