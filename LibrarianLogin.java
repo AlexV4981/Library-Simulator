@@ -1,3 +1,9 @@
+/**
+ * this is the login screen for librarian accounts
+ *
+ * @author Hung Nguyen
+ */
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -76,9 +82,11 @@ public class LibrarianLogin extends JFrame {
         setupActions();
     }
 
+    // this creates all the buttons for the librarian to interact with in their dashboard.
     private void setupActions() {
 
-        // LOGIN ACTION
+        // this section validates your credentials to log you in
+        // it takes you to the librarian dashboard if successful
         loginButton.addActionListener(e -> {
             String user = usernameField.getText();
             String pass = new String(passwordField.getPassword());
@@ -93,7 +101,9 @@ public class LibrarianLogin extends JFrame {
             JOptionPane.showMessageDialog(this, "Invalid login");
         });
 
-        // CREATE LIBRARIAN ACTION
+        // if you don't have an librarian account you can make one
+        // technically flawed because anyone can make a librarian account, but this is more so just a proof of concept
+        // this just makes a popup window for the user to fill out to create a librarian account
         createLibrarianButton.addActionListener(e -> {
             JTextField newUser = new JTextField();
             JPasswordField newPass = new JPasswordField();
@@ -125,6 +135,7 @@ public class LibrarianLogin extends JFrame {
             }
         });
 
+        // this switches to the patron login screen
         switchToPatronButton.addActionListener(e -> {
             PatronLogin patron = new PatronLogin(library);
             patron.setVisible(true);

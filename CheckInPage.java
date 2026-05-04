@@ -1,3 +1,9 @@
+/**
+ * this shows you which books you currently have checked out and allows you to turn them in
+ *
+ * @author Hung Nguyen
+ */
+
 import javax.swing.*;
 import java.awt.*;
 

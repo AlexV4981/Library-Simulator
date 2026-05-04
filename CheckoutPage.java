@@ -1,3 +1,9 @@
+/**
+ * this showcases all the books that you have added to your cart. You may select
+ * which ones to actually check out
+ *
+ * @author Hung Nguyen
+ */
 import javax.swing.*;
 import java.awt.*;
 

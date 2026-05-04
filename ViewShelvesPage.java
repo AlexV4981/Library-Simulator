@@ -1,3 +1,9 @@
+/**
+ * this uses the same system as viewing the whole catalog to view just a single shelf of books
+ *
+ * @author Hung Nguyen
+ */
+
 import javax.swing.*;
 import java.awt.*;
 

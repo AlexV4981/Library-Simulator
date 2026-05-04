@@ -1,3 +1,9 @@
+/**
+ * this allows the librarian to look at patron accounts and add fines to their accounts.
+ *
+ * @author Hung Nguyen
+ */
+
 import javax.swing.*;
 import java.awt.*;
 

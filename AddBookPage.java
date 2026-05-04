@@ -1,5 +1,12 @@
+/**
+ * This allows the librarian to add books to the library
+ *
+ * @author Hung Nguyen
+ */
+
 import javax.swing.*;
 import java.awt.*;
+
 
 public class AddBookPage extends JFrame {
 

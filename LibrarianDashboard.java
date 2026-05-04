@@ -1,4 +1,10 @@
-import java.util.ArrayList;
+/**
+ * This is the screen where the librarian can perform all their actions to
+ * interact with the library_sim itself or the patrons of it
+ *
+ * @author Hung Nguyen
+ */
+
 import javax.swing.*;
 import java.awt.*;
 

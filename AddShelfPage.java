@@ -1,3 +1,9 @@
+/**
+ * this allows the librarian to add shelves to the library_sim
+ *
+ * @author Hung Nguyen
+ */
+
 import javax.swing.*;
 import java.awt.*;
 

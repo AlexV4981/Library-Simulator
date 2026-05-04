@@ -1,3 +1,9 @@
+/**
+ * this controls what grouping of books you will see.
+ *
+ * @author Hung Nguyen
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -8,10 +14,12 @@ public class BookListPage extends JFrame {
     private User currentUser;
     private Shelf shelf; // null means "show full catalog"
 
+    // this is the view used for the full catalog
     public BookListPage(Library_Sim library, User currentUser) {
         this(library, currentUser, null); // call the main constructor
     }
 
+    // if you are looking through specific shelves, this is what you will see.
     public BookListPage(Library_Sim library, User currentUser, Shelf shelf) {
         this.library = library;
         this.currentUser = currentUser;
