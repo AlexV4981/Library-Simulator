@@ -37,9 +37,8 @@ public class Main {
         System.out.println("\n--- Fantasy Shelf Contents ---");
         fantasyShelf.shelfBookInfo();
 
-        Patron firstPatron = new Patron("John", "Doe", 5, 0.0);
         // 4. Setup initial Patron
-        Patron firstPatron = new Patron("John", 5, 0.0);
+        Patron firstPatron = new Patron("John", "Doe", 5, 0.0);
         library.addPatron(firstPatron);
 
         // 5. Console Debug Info (Optional)
